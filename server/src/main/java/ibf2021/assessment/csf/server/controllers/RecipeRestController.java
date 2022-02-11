@@ -26,6 +26,7 @@ import ibf2021.assessment.csf.server.services.RecipeService;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
+import jakarta.json.JsonString;
 
 /* Write your request hander in this file */
 
@@ -79,7 +80,7 @@ public class RecipeRestController {
                 recipe.setInstruction(recipeJson.getString("instruction"));
                 recipe.setImage(recipeJson.getString("image"));
                 recipeJson.getJsonArray("ingredients").stream()
-                    .forEach(ingredient -> recipe.addIngredient(ingredient.toString()));
+                    .forEach(ingredient -> recipe.addIngredient(((JsonString)ingredient).getString()));
             } catch (JsonProcessingException jpe) {
                 logger.severe(jpe.getMessage());
             } catch (IOException ioe) {
