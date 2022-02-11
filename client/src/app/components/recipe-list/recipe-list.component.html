@@ -1,0 +1,15 @@
+<div>
+  <mat-selection-list #recipelist [multiple]="false">
+    <!-- <pre>{{ recipes | json }}</pre> -->
+    <mat-list-option
+      *ngFor="let recipe of recipes"
+      [value]="recipe"
+      [routerLink]="['/recipe', recipe.id]"
+    >
+      {{ recipe['name'] }}
+    </mat-list-option>
+  </mat-selection-list>
+  <section fxLayout="row" fxLayoutAlign="end">
+    <button mat-raised-button type="button" color="primary" [routerLink]="['/add']" class="mr-2">Add</button>
+  </section>
+</div>

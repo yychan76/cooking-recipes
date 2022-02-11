@@ -1,0 +1,139 @@
+<mat-card class="add-card">
+  <div>
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form">
+        <div class="container">
+          <section>
+            <h2>Title</h2>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter Recipe Title</mat-label>
+              <input
+                matInput
+                placeholder="Chicken Pie"
+                formControlName="title"
+              />
+              <mat-error *ngIf="form.controls['title'].hasError('required')">
+                Title is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="form.controls['title'].hasError('minlength')">
+                Title needs to be at least <strong>3</strong> characters long
+              </mat-error>
+            </mat-form-field>
+          </section>
+          <section>
+            <div formArrayName="ingredients">
+              <div fxLayout="row" fxLayoutAlign="space-between">
+
+                <h2>Ingredients</h2>
+                <button
+                  mat-mini-fab
+                  type="button"
+                  color="primary"
+                  class="mr-2"
+                  (click)="addIngredients()"
+                >
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+
+              <div
+                *ngFor="let ingredient of ingredients.controls; let i = index"
+              >
+              <section fxLayout="row" fxLayoutAlign="space-between">
+
+                <!-- The repeated ingredient template -->
+                <mat-form-field appearance="fill">
+                  <input
+                    id="ingredient-{{ i }}"
+                    matInput
+                    placeholder="Flour"
+                    [formControlName]="i"
+                  />
+                  <mat-error *ngIf="ingredient.hasError('required')">
+                    Ingredient is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="ingredient.hasError('minlength')">
+                    Ingredient needs to be at least <strong>3</strong> characters
+                    long
+                  </mat-error>
+                </mat-form-field>
+                <button
+                  mat-mini-fab
+                  type="button"
+                  color="warn"
+                  class="mr-2"
+                  (click)="deleteIngredient(i)"
+                >
+                  <mat-icon>clear</mat-icon>
+                </button>
+              </section>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2>Instruction</h2>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter Recipe Instruction</mat-label>
+              <textarea
+                matInput
+                placeholder="Prepare the spices..."
+                formControlName="instruction"
+                rows="6"
+              ></textarea>
+              <mat-error
+                *ngIf="form.controls['instruction'].hasError('required')"
+                >Instruction is <strong>required</strong></mat-error
+              >
+              <mat-error
+                *ngIf="form.controls['instruction'].hasError('minlength')"
+                >Instruction needs to be at least <strong>3</strong> characters
+                long</mat-error
+              >
+            </mat-form-field>
+          </section>
+          <section>
+            <h2>Image</h2>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter Recipe Image URL</mat-label>
+              <input
+                matInput
+                placeholder="http://example.com/image/pie.jpg"
+                formControlName="image"
+              />
+              <mat-error *ngIf="form.controls['image'].hasError('required')"
+                >Image is <strong>required</strong></mat-error
+              >
+            </mat-form-field>
+          </section>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+  <mat-card-actions>
+    <section fxLayout="row" fxLayoutAlign="end">
+      <button
+        mat-raised-button
+        type="button"
+        color="primary"
+        [routerLink]="['/']"
+        class="mr-2"
+      >
+        Back
+      </button>
+      <button
+        mat-raised-button
+        type="button"
+        color="primary"
+        class="mr-2"
+        [disabled]="form.invalid"
+        (click)="addRecipe()"
+      >
+        Add
+      </button>
+    </section>
+  </mat-card-actions>
+</mat-card>

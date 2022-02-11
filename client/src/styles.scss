@@ -37,3 +37,11 @@ $client-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
+.mr-2 {
+  margin-right: 2rem;
+}
