@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormGuard } from 'src/app/common/models';
 import { RecipeService } from 'src/app/common/services/recipe.service';
 
 @Component({
@@ -8,10 +9,15 @@ import { RecipeService } from 'src/app/common/services/recipe.service';
   templateUrl: './recipe-add.component.html',
   styleUrls: ['./recipe-add.component.scss'],
 })
-export class RecipeAddComponent implements OnInit {
+export class RecipeAddComponent implements OnInit, FormGuard {
   form!: FormGroup;
 
   constructor(private fb: FormBuilder, private recipeService: RecipeService, private router: Router) {}
+
+  needsSave(): boolean {
+    // returns true if there are valid changes to be saved
+    return this.form.dirty && this.form.valid;
+  }
 
   ngOnInit(): void {
     this.createForm();
