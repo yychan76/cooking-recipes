@@ -1,7 +1,8 @@
 <mat-toolbar color="primary" class="toolbar">
   <span>Cooking Recipes &nbsp;</span>
   <mat-icon>restaurant_menu</mat-icon>
-
+  <span class="spacer"></span>
+  <app-dark-mode-toggle (onDarkModeEnable)="setDarkMode($event)"></app-dark-mode-toggle>
 </mat-toolbar>
 <div class="content app-frame mat-app-background">
   <router-outlet></router-outlet>

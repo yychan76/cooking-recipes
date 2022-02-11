@@ -1,0 +1,14 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+html,
+body,
+app-root,
+.app-frame {
+  height: 100%;
+  overflow-y: auto;
+  margin: 0;
+  overscroll-behavior-x: none;
+  // overscroll-behavior-y: none;
+}

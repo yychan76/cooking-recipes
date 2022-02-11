@@ -14,6 +14,7 @@ import { RecipeListComponent } from './components/recipe-list/recipe-list.compon
 import { MaterialModule } from './material.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DarkModeToggleComponent } from './components/dark-mode-toggle/dark-mode-toggle.component';
 
 const appRoutes: Routes = [
   { path: '', component: RecipeListComponent },
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     RecipeListComponent,
     RecipeDetailComponent,
     RecipeAddComponent,
+    DarkModeToggleComponent,
   ],
   imports: [
     BrowserModule,
